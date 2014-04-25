@@ -1,2 +1,19 @@
 <h2>This is the band#show</h2>
 <h3>Band: <%= @band.name %></h3>
+
+The band has the following albums:
+<br>
+<% @band.albums.each do |album| %>
+	<%= link_to album.name, album_url(album) %>
+	<br>
+<% end %>
+<br>
+
+The band has the following tracks:
+<br>
+<% @band.tracks.each do |track| %>
+	<%= link_to track.name, track_url(track) %>
+	<br>
+<% end %>
+
+<%= render @band %>

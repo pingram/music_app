@@ -1,2 +1,15 @@
 <h2>This is the album#show</h2>
+<h3>Album: <%= @album.name %></h3>
+
+The album's artist is:<br>
+<%= link_to @album.band.name, band_url(@album.band) %>
+<br><br>
+
+The album has the following tracks:
+<br>
+<% @album.tracks.each do |track| %>
+	<%= link_to track.name, track_url(track) %>
+	<br>
+<% end %>
+
 <%= render @album %>

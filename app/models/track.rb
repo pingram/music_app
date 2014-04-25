@@ -3,5 +3,5 @@ class Track < ActiveRecord::Base
 	validates :is_bonus, inclusion: { in: [true, false] }
 
 	belongs_to :album
-	has_many :bands, through: :album
+	has_one :band, through: :album
 end

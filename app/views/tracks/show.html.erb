@@ -1,2 +1,12 @@
 <h2>This is the track#show</h2>
+<h3>Track: <%= @track.name %></h3>
+
+The track's artist is:<br>
+<%= link_to @track.band.name, band_url(@track.band) %>
+<br><br>
+
+The track's album is:<br>
+<%= link_to @track.album.name, album_url(@track.album) %>
+<br><br>
+
 <%= render @track %>
