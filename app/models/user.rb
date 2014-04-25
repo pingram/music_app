@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	before_validation :ensure_token
 
 	def self.generate_token
-
+		SecureRandom::urlsafe_base64(16)
 	end
 
 	def ensure_token
