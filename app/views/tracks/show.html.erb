@@ -12,6 +12,8 @@ The track's album is:<br>
 Notes on this track:<br>
 <%= render @track.notes %>
 
+<%= render "notes/form", note: Note.new(track_id: @track.id)%>
+
 <%= render @track %>
 
 <%= button_to "Delete Track",

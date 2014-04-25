@@ -2,4 +2,8 @@
 	<br>User: <%= note.user.email %>
 	<br>Track: <%= note.track.name %>
 	<br>Body: <%= note.body %>
+	<%= button_to "Delete note",
+		note_url(note),
+		method: "delete",
+		data: { confirm: 'Are you sure?' } %>
 </p>

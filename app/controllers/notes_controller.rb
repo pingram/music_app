@@ -42,11 +42,11 @@ class NotesController < ApplicationController
 		@note = Note.find(params[:id])
 		if @note.nil?
 			flash[:errors] = "Note was not found"
-			redirect_to notes_url
+			redirect_to track_url(@note.track)
 		else
 			@note.delete #XXX use try to delete
 			# add a notice
-			redirect_to notes_url
+			redirect_to track_url(@note.track)
 		end
 	end
 
