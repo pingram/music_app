@@ -10,3 +10,8 @@ The track's album is:<br>
 <br><br>
 
 <%= render @track %>
+
+<%= button_to "Delete Track",
+	track_url(@track),
+	method: "delete",
+	data: { confirm: 'Are you sure?' } %>

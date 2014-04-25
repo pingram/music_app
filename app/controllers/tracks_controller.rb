@@ -46,9 +46,9 @@ class TracksController < ApplicationController
 			flash[:errors] = "Track was not found"
 			redirect_to tracks_url
 		else
-			@track.delete! #XXX use try to delete
+			@track.delete #XXX use try to delete
 			# add a notice
-			redirect_to tracks_url
+			redirect_to album_url(@track.album)
 		end
 	end
 

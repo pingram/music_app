@@ -13,3 +13,8 @@ The album has the following tracks:
 <% end %>
 
 <%= render @album %>
+
+<%= button_to "Delete Album",
+	album_url(@album),
+	method: "delete",
+	data: { confirm: 'Are you sure?' } %>

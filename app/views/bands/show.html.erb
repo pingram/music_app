@@ -17,3 +17,8 @@ The band has the following tracks:
 <% end %>
 
 <%= render @band %>
+
+<%= button_to "Delete Band",
+	band_url(@band),
+	method: "delete",
+	data: { confirm: 'Are you sure?' } %>

@@ -44,7 +44,7 @@ class BandsController < ApplicationController
 			flash[:errors] = "Band was not found"
 			redirect_to bands_url
 		else
-			@band.delete! #XXX use try to delete
+			@band.delete #XXX use try to delete
 			# add a notice
 			redirect_to bands_url
 		end

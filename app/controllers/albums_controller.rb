@@ -49,9 +49,9 @@ class AlbumsController < ApplicationController
 			flash[:errors] = "Album was not found"
 			redirect_to albums_url
 		else
-			@album.delete! #XXX use try to delete
+			@album.delete #XXX use try to delete
 			# add a notice
-			redirect_to albums_url
+			redirect_to band_url(@album.band)
 		end
 	end
 
