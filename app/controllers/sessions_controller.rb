@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+
+	skip_before_action :require_login, only: [:new, :create]
+
+	helper_method :current_user
+
 	def new
 		render :new
 	end

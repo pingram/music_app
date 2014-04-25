@@ -9,6 +9,9 @@ The track's album is:<br>
 <%= link_to @track.album.name, album_url(@track.album) %>
 <br><br>
 
+Notes on this track:<br>
+<%= render @track.notes %>
+
 <%= render @track %>
 
 <%= button_to "Delete Track",
