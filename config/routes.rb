@@ -10,10 +10,10 @@ MusicApp::Application.routes.draw do
   end
 
   resources :albums, except: [:index, :new] do
-    resources :tracks, only: [:new, :create]
+    resources :tracks, only: [:index, :new]
   end
 
-  resources :tracks, except: [:new, :create]
+  resources :tracks, except: [:index, :new]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

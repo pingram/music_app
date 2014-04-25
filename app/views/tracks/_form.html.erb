@@ -1,0 +1,53 @@
+<% action = (track.persisted? ? track_url(track) : tracks_url) %>
+<% method = (track.persisted? ? "put" : "post") %>
+<% message = (track.persisted? ? "Update track" : "Create track") %>
+
+<form action="<%= action %>" method="post">
+  <input
+     name="_method"
+     type="hidden"
+     value="<%= method %>">
+  <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
+
+  <label for="track_name">Name</label>
+  <input
+     id="track_name"
+     name="track[name]"
+     type="text"
+     value="<%= track.name %>">
+  <br>
+
+  <label for="track_is_bonus">Bonus track?</label>
+  <select id="track_is_bonus" name="track[is_bonus]">
+    <option value="true" %>True</option>
+    <option value="false" %>False</option>
+  </select>
+  <br>
+
+  Album Id: <%= @album_id %>
+  <br>
+
+  <label for="track_album_id">Album Id</label>
+  <select id="track_album_id" name="track[album_id]">
+    <% Album.all.each do |album| %>
+    <!-- XXX come back and update the selected -->
+      <option value="<%= album.id %>" <%= "selected" if album.id == @album_id %>>
+        <%= album.id %>
+      </option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="track_lyrics">Lyrics</label>
+  <input
+     id="track_lyrics"
+     name="track[lyrics]"
+     type="textarea"
+     value="<%= track.lyrics %>">
+  <br>
+
+  <input type="submit" value="<%= message %>">
+</form>

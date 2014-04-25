@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
 	def index
-		@tracks = Track.all
+		@tracks = Track.where(album_id: params["album_id"])
 		render :index
 	end
 
@@ -10,6 +10,7 @@ class TracksController < ApplicationController
 	end
 
 	def new
+		@album_id = params["album_id"]
 		@track = Track.new
 		render :new
 	end
@@ -25,6 +26,7 @@ class TracksController < ApplicationController
 	end
 
 	def edit
+		@album_id = params[:id]
 		@track = Track.find(params[:id])
 	end
 
@@ -51,6 +53,6 @@ class TracksController < ApplicationController
 	end
 
 	def track_params
-		params.require(:track).permit(:name)
+		params.require(:track).permit(:name, :album_id, :is_bonus, :lyrics)
 	end
 end
