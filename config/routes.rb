@@ -1,7 +1,20 @@
 MusicApp::Application.routes.draw do
   root to: "users#index"
+
   resources :users, only: [:index, :new, :create, :show]
+
   resource :session, only: [:new, :create]
+
+  resources :bands do
+    resources :albums, only: [:index, :new, :create]
+  end
+
+  resources :albums, except: [:new, :create] do
+    resources :tracks, only: [:new, :create]
+  end
+
+  resources :tracks, except: [:new, :create]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
