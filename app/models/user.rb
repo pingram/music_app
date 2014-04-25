@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
 		SecureRandom::urlsafe_base64(16)
 	end
 
+	def reset_token!
+		self.token = self.class.generate_token
+		self.save!
+	end
+
 	def ensure_token
 		self.token ||= self.class.generate_token
 	end

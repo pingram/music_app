@@ -1,2 +1,22 @@
 module SessionsHelper
+
+	def current_user
+		return nil if session[:token].nil?
+		@current_user ||= User.find_by_token(session[:token])
+	end
+
+	def current_user=(user)
+		@current_user = user
+		session[:token] = user.token
+	end
+
+	def logged_in?
+		!!session[:token]
+	end
+
+	def log_in_user!(user)
+		user.token = User.generate_token
+		user.save!
+		self.current_user = user
+	end
 end
