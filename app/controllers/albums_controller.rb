@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
 	def index
-		@albums = Album.all
+		@albums = Album.where(band_id: params["band_id"])
 		render :index
 	end
 
@@ -10,7 +10,9 @@ class AlbumsController < ApplicationController
 	end
 
 	def new
+		@band_id = params["band_id"]
 		@album = Album.new
+		@recording_types = Album.all_recording_types
 		render :new
 	end
 
@@ -25,7 +27,10 @@ class AlbumsController < ApplicationController
 	end
 
 	def edit
+		@band_id = params[:id]
 		@album = Album.find(params[:id])
+		@recording_types = Album.all_recording_types
+		fail
 	end
 
 	def update
@@ -51,6 +56,6 @@ class AlbumsController < ApplicationController
 	end
 
 	def album_params
-		params.require(:album).permit(:name)
+		params.require(:album).permit(:name, :band_id, :recording_type)
 	end
 end
