@@ -11,7 +11,7 @@ module SessionsHelper
 	end
 
 	def logged_in?
-		!!session[:token]
+		!!current_user
 	end
 
 	def log_in_user!(user)
