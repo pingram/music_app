@@ -36,6 +36,7 @@ group :development do
 	gem 'bcrypt'
 	gem 'better_errors'
 	gem 'binding_of_caller'
+	gem "letter_opener"
 end
 
 gem 'annotate'
