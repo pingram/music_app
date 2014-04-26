@@ -8,13 +8,18 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		@user.activation_token = User.generate_token
-		UserMailer.activation_email(@user).deliver!
+		# fail
+
+		p @user.valid?
+		p @user
+
 		if @user.save
-			fail
-			log_in_user!(@user)
-			redirect_to user_url(@user)
+			# log_in_user!(@user)
+			UserMailer.activation_email(@user).deliver!
+			redirect_to new_session_url
 		else
 			flash.now[:errors] = @user.errors.full_messages
+			#XXX come back to figure out why this isn't working
 			render :new
 		end
 	end
@@ -30,7 +35,7 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:email, :password)
+		params.require(:user).permit(:email, :password, :activation_token, :activated)
 	end
 
 end
