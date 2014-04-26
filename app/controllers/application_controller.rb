@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
-  before_action :require_login
+  before_action :require_login_and_activated
 
   private
 
-  def require_login
-  	unless logged_in?
+  def require_login_and_activated
+  	unless logged_in? && current_user.activated
       flash[:error] = "You must be logged in to access this section"
       redirect_to new_session_url
     end

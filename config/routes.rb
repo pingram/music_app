@@ -1,7 +1,9 @@
 MusicApp::Application.routes.draw do
   root to: "users#index"
 
-  resources :users, only: [:index, :new, :create, :show]
+  resources :users, only: [:index, :new, :create, :show] do
+    get 'activate', :on => :collection
+  end
 
   resource :session, only: [:new, :create]
 

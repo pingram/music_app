@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-
-	skip_before_action :require_login, only: [:new, :create]
+	skip_before_action :require_login_and_activated, only: [:new, :create]
 
 	helper_method :current_user
 
@@ -14,6 +13,10 @@ class SessionsController < ApplicationController
 			user_params["password"])
 		if @user.nil?
 			flash.now[:errors] = ["Either username or password is incorrect"]
+			render :new
+		elsif @user.activated = false
+			flash.now[:errors] = ["User has not been activated, new activation token sent."]
+			UserMailer.activation_email(@user).deliver!
 			render :new
 		else
 			log_in_user!(@user)

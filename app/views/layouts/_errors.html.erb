@@ -3,3 +3,9 @@
    <%= error %><br />
   <% end %>
 <% end %>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+   <%= error %><br />
+  <% end %>
+<% end %>
