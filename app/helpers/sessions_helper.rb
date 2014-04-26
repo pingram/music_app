@@ -19,4 +19,9 @@ module SessionsHelper
 		user.save!
 		self.current_user = user
 	end
+
+	def logout_current_user!
+		current_user.reset_token!
+		session[:token] = nil
+	end
 end

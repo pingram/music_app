@@ -7,12 +7,10 @@ class User < ActiveRecord::Base
 	validates :password, length: { minimum: 6, allow_nil: true }
 	validates :activated, inclusion: { in: [true, false] }
 	before_validation do
-			ensure_token
-			activated_has_value
-			ensure_activation_token
-		end
-	# before_validation
-	# before_validation
+		ensure_token
+		activated_has_value
+		ensure_activation_token
+	end
 
 	has_many :notes
 

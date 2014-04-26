@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
-	skip_before_action :require_login_and_activated, only: [:new, :create]
+	skip_before_action :require_login_and_activated, only: [:new, :create, :destroy]
 
 	helper_method :current_user
 
 	def new
+		# XXX redirect users that are already logged in
 		render :new
 	end
 
@@ -22,6 +23,11 @@ class SessionsController < ApplicationController
 			log_in_user!(@user)
 			redirect_to user_url(@user)
 		end
+	end
+
+	def destroy
+		logout_current_user!
+		redirect_to new_session_url
 	end
 
 	private

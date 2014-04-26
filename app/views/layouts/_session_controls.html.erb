@@ -1,0 +1,11 @@
+<% if logged_in? %>
+	<p>
+		Currently logged in as <%= current_user.email %>
+		<%= button_to "Logout",
+			session_url,
+			method: "delete",
+			data: { confirm: 'Are you sure?' } %>
+	</p>
+<% else %>
+
+<% end %>

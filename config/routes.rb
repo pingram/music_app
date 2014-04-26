@@ -5,7 +5,7 @@ MusicApp::Application.routes.draw do
     get 'activate', :on => :collection
   end
 
-  resource :session, only: [:new, :create]
+  resource :session, only: [:new, :create, :destroy]
 
   resources :bands do
     resources :albums, only: [:index, :new]
